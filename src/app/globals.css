@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --water-gradient: linear-gradient(135deg, #0077e6 0%, #00bcd4 50%, #00e5ff 100%);
+  --gold-gradient: linear-gradient(135deg, #ff8f00 0%, #ffc107 100%);
+  --bg-primary: #f0f9ff;
+  --bg-card: #ffffff;
+  --text-primary: #0a2540;
+  --text-secondary: #4a6080;
+  --border-color: #e0f0ff;
+  --shadow-water: 0 8px 32px rgba(0, 119, 230, 0.15);
+  --shadow-card: 0 4px 20px rgba(0, 50, 100, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Hind Siliguri', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Water ripple animation */
+.water-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.water-ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s, opacity 0.6s;
+  opacity: 0;
+}
+
+.water-ripple:active::before {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e0f0ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0077e6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #005eb3;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Animated gradient text */
+.gradient-text {
+  background: var(--water-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Water wave effect */
+.wave-bg {
+  background: var(--water-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 200%;
+  height: 60px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%23f0f9ff' d='M0,30 C360,60 720,0 1080,30 C1260,45 1350,45 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E") repeat-x;
+  background-size: 720px 60px;
+  animation: wave 8s linear infinite;
+}
+
+@keyframes wave {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Card hover effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 119, 230, 0.2);
+}
+
+/* Progress bar */
+.progress-bar {
+  background: linear-gradient(90deg, #0077e6, #00bcd4);
+  transition: width 0.8s ease;
+  border-radius: 999px;
+}
+
+/* Lesson content markdown */
+.lesson-content h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0a2540;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #0077e6;
+}
+
+.lesson-content h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0077e6;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.lesson-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #005eb3;
+  margin: 1rem 0 0.5rem;
+}
+
+.lesson-content p {
+  margin-bottom: 0.75rem;
+  color: #2a4060;
+}
+
+.lesson-content ul, .lesson-content ol {
+  margin: 0.75rem 0 1rem 1.5rem;
+}
+
+.lesson-content li {
+  margin-bottom: 0.4rem;
+  color: #2a4060;
+}
+
+.lesson-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.lesson-content th {
+  background: #0077e6;
+  color: white;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.lesson-content td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #e0f0ff;
+}
+
+.lesson-content tr:nth-child(even) td {
+  background: #f0f9ff;
+}
+
+/* Fade animations */
+.fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Button styles */
+.btn-primary {
+  background: var(--water-gradient);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 119, 230, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 119, 230, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #0077e6;
+  border: 2px solid #0077e6;
+  border-radius: 12px;
+  padding: 0.7rem 1.5rem;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #0077e6;
+  color: white;
+}
+
+/* Input styles */
+.input-field {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 3rem;
+  border: 2px solid #e0f0ff;
+  border-radius: 12px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 1rem;
+  color: #0a2540;
+  background: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #0077e6;
+  box-shadow: 0 0 0 4px rgba(0, 119, 230, 0.1);
+}
+
+/* Floating water drops */
+.water-drop {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: rgba(0, 188, 212, 0.2);
+  animation: float 6s ease-in-out infinite;
+}
